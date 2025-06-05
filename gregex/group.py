@@ -7,3 +7,7 @@ class Group:
         elif name:
             self.name = name
             self.data = f'?<{name}>'
+
+    def add_pattern(self, pattern):
+        self.data += pattern
+        return self
