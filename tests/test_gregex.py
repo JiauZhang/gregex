@@ -1,5 +1,7 @@
 import re
 from gregex import char, repeat
+from gregex.set import Set
+from gregex.group import Group
 
 class TestGregex:
     text = '''### Install
@@ -46,8 +48,11 @@ z = x @ y # [2, 4]
 </table>
 '''
 
-    def test_word(self):
-        s = r'[' + r'#' + char.WORD + r']'
-        pattern = char.MATCH_BEGIN + s + repeat.ONE_OR_MORE + char.WHITESPACE
+    def test_title(self):
+        pattern = char.MATCH_BEGIN + Group(name='head'
+            ).add_pattern('#' + repeat.ONE_OR_MORE
+            ).pattern + char.WHITESPACE + repeat.ONE_OR_MORE + Group(name='title'
+            ).add_pattern(char.WORD + repeat.ONE_OR_MORE).pattern
         m = re.match(pattern, self.text)
-        assert m.group(0) == '### '
+        assert m is not None and m.lastindex == 2
+        assert m.group('head') == '###' and m.group('title') == 'Install'

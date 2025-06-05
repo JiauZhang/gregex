@@ -10,6 +10,10 @@ class Set:
         self.data += f'{start}-{end}'
         return self
 
+    @property
+    def pattern(self):
+        return f'[{self.data}]'
+
 class ReverseSet(Set):
     def __init__(self):
         self.data = '^'

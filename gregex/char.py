@@ -1,5 +1,6 @@
 TAB = r'\t'
 NEWLINE = r'\n'
+NON_NEWLINE = r'.'
 BACKSLASH = r'\\'
 # [a-zA-Z_0-9]
 WORD = r'\w'
