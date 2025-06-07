@@ -56,3 +56,10 @@ z = x @ y # [2, 4]
         m = re.match(pattern, self.text)
         assert m is not None and m.lastindex == 2
         assert m.group('head') == '###' and m.group('title') == 'Install'
+
+    def test_code_block(self):
+        pattern = '`' + repeat.exactly(3) + Group(name='lang'
+            ).add_pattern(char.WORD + repeat.ZERO_OR_MORE).pattern + Group(name='code'
+            ).add_pattern(char.SET_ALL + repeat.ZERO_OR_MORE).pattern + '`' + repeat.exactly(3)
+        m = re.findall(pattern, self.text)
+        assert m is not None

@@ -1,8 +1,8 @@
 class Group:
-    def __init__(self, name=None, noncapturing=False):
+    def __init__(self, name=None, non_grouping=False):
         self.name = None
         self.data = ''
-        if noncapturing:
+        if non_grouping:
             self.name = ''
             self.data = r'?:'
         elif name:
